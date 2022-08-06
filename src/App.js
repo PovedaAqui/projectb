@@ -17,7 +17,9 @@ function App() {
 
   return (
     <div>
-      <ConnectButton />
+      <ConnectButton 
+        signingMessage='Login to Bookverse'
+      />
     </div>
   );
 }
