@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useMoralis } from "react-moralis";
 import console from "console-browserify";
 import { ConnectButton } from '@web3uikit/web3';
+import { Route, Router, Routes } from 'react-router-dom';
+import MyBooks from './pages/MyBooks';
 
 function App() {
 
@@ -16,11 +18,9 @@ function App() {
 }, [isAuthenticated]);
 
   return (
-    <div>
-      <ConnectButton 
-        signingMessage='Login to Bookverse'
-      />
-    </div>
+      <Routes>
+        <Route path='/' element={<MyBooks />} />
+      </Routes>
   );
 }
 
