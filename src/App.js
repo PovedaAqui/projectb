@@ -4,6 +4,7 @@ import console from "console-browserify";
 import { ConnectButton } from '@web3uikit/web3';
 import { Route, Router, Routes } from 'react-router-dom';
 import MyBooks from './pages/MyBooks';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -18,9 +19,12 @@ function App() {
 }, [isAuthenticated]);
 
   return (
-      <Routes>
-        <Route path='/' element={<MyBooks />} />
-      </Routes>
+    <div>
+      <NavBar />
+        <Routes>
+          <Route path='/' element={<MyBooks />} />
+        </Routes>
+    </div>
   );
 }
 
