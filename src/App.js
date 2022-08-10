@@ -18,6 +18,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isAuthenticated]);
 
+//Pasar la address como prop a MyBooks e imprimilar por consola
+
   return (
     <div>
       <NavBar />
