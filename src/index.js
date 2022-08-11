@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { MoralisProvider } from "react-moralis";
 import { BrowserRouter } from 'react-router-dom';
 
 const serverUrl = process.env.REACT_APP_DAPP_SERVER;
@@ -13,9 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MoralisProvider serverUrl={serverUrl} appId={appId}>
-        <App />
-      </MoralisProvider>
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );
