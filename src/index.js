@@ -4,16 +4,71 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
+import {
+  WagmiConfig,
+  createClient,
+  configureChains,
+  defaultChains,
+  chain
+} from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { ConnectKitProvider } from "connectkit";
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
+import { InjectedConnector } from 'wagmi/connectors/injected';
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+import { Buffer } from "buffer";
 
-const serverUrl = process.env.REACT_APP_DAPP_SERVER;
-const appId = process.env.REACT_APP_MORALIS_ID;
+if (!window.Buffer) window.Buffer = Buffer;
+
+const { chains, provider, webSocketProvider } = configureChains(
+  [chain.polygon],
+  [alchemyProvider({ apiKey: `${process.env.REACT_APP_ALCHEMY_KEY}`, priority: 0 })],
+  [publicProvider({ priority: 1 })],
+)
+
+const client = createClient({
+  autoConnect: true,
+  connectors: [
+    new MetaMaskConnector({ chains }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: 'wagmi',
+      },
+    }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        qrcode: true,
+      },
+    }),
+    new InjectedConnector({
+      chains,
+      options: {
+        name: 'Injected',
+        shimDisconnect: true,
+      },
+    }),
+  ],
+  provider,
+  webSocketProvider,
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <WagmiConfig client={client}>
+      <ConnectKitProvider>
+        <ChakraProvider>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+        </ChakraProvider>
+      </ConnectKitProvider>
+    </WagmiConfig>
   </React.StrictMode>
 );
 
