@@ -1,9 +1,13 @@
 import React from 'react';
+import { useAccount } from 'wagmi';
 
 const MyBooks = () => {
+
+    const { address } = useAccount();
+
     return (
         <div>
-            <h1>TEST</h1>
+            {console.log(address)}
         </div>
     )
 }
