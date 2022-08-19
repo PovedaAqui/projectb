@@ -9,7 +9,7 @@ const MyBooks = () => {
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
     const fetchNFT = async () => {
-        const res = await fetch(`https://api.nftport.xyz/v0/accounts/${address}?chain=${chain}&contract_address=${nftContract}`, {
+        const res = await fetch(`https://api.nftport.xyz/v0/accounts/${address}?chain=${chain}&include=metadata&contract_address=${nftContract}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -20,7 +20,7 @@ const MyBooks = () => {
         return res.json();
     };
     
-    const { isLoading, isError, data, error, refetch } = useQuery(['nfts'], fetchNFT);
+    const { isLoading, isError, data, error } = useQuery(['nfts'], fetchNFT, { enabled: address!==undefined });
     console.log(data);
     
 
