@@ -1,15 +1,33 @@
 import React from 'react';
 import { useAccount } from 'wagmi';
+import { useQuery } from '@tanstack/react-query';
 
 const MyBooks = () => {
 
     const { address } = useAccount();
+    const chain = process.env.REACT_APP_CHAIN;
+    const nftContract = process.env.REACT_APP_NFTCONTRACT;
+
+    const fetchNFT = async () => {
+        const res = await fetch(`https://api.nftport.xyz/v0/accounts/${address}?chain=${chain}&contract_address=${nftContract}`, {
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json",
+                "Authorization": process.env.REACT_APP_NFT_PORT
+                }
+            }
+        )
+        return res.json();
+    };
+    
+    const { isLoading, isError, data, error, refetch } = useQuery(['nfts'], fetchNFT);
+    console.log(data);
+    
 
     return (
         <div>
-            {console.log(address)}
         </div>
     )
-}
+};
 
 export default MyBooks;
