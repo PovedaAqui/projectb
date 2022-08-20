@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAccount } from 'wagmi';
 import { useQuery } from '@tanstack/react-query';
+import Card from '../components/Card';
 
 const MyBooks = () => {
 
@@ -26,6 +27,11 @@ const MyBooks = () => {
 
     return (
         <div>
+            {data.nfts.map((nft)=>{
+                return (
+                    <div>{<Card name={nft.metadata.name} description={nft.metadata.description} />}</div>
+                )
+            })}
         </div>
     )
 };
