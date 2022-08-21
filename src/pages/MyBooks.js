@@ -26,10 +26,12 @@ const MyBooks = () => {
     
 
     return (
-        <div>
+        <div className='grid grid-cols-3 gap-3 mt-1'>
             {data.nfts.map((nft)=>{
                 return (
-                    <div>{<Card name={nft.metadata.name} description={nft.metadata.description} />}</div>
+                    <div>
+                        <Card name={nft.metadata.name} description={nft.metadata.description} image={nft.metadata.image} />
+                    </div>
                 )
             })}
         </div>
