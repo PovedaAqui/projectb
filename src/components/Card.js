@@ -6,10 +6,13 @@ const Card = ({image, ...props}) => {
     let url = "";
     url = image.replace("ipfs//", "https://ipfs.io/ipfs/");
 
+    let external_url = "";
+    external_url = props.external_url.replace("ipfs//", "https://ipfs.io/ipfs/");
+
     return (
         <div className="flex justify-start relative m-2">
             <div className="rounded-lg shadow-lg bg-white max-w-sm">
-                <a href="#!">
+                <a href={external_url} rel="external">
                     <img className="rounded-t-lg" src={url} alt=""/>
                 </a>
                 <div className="relative p-6">

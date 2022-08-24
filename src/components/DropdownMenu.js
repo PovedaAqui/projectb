@@ -75,7 +75,7 @@ export default function DropdownMenu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-violet-500 text-white' : 'text-gray-400'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -89,15 +89,15 @@ export default function DropdownMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    View on OpenSea
+                    View on OpenSea (soon)
                   </button>
                 )}
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item disabled>
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-violet-500 text-white' : 'text-gray-400'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -111,17 +111,17 @@ export default function DropdownMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    View on explorer
+                    View on explorer (soon)
                   </button>
                 )}
               </Menu.Item>
             </div>
             <div className="px-1 py-1">
-              <Menu.Item>
+              <Menu.Item disabled>
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-violet-500 text-white' : 'text-gray-400'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -135,7 +135,7 @@ export default function DropdownMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    Burn
+                    Burn (soon)
                   </button>
                 )}
               </Menu.Item>
