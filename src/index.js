@@ -19,6 +19,7 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { Buffer } from "buffer";
+import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 
 if (!window.Buffer) window.Buffer = Buffer;
 
@@ -62,7 +63,9 @@ root.render(
     <WagmiConfig client={client}>
       <ConnectKitProvider>
         <BrowserRouter>
+          <ThirdwebProvider desiredChainId={ChainId.Polygon}>
             <App />
+          </ThirdwebProvider>
         </BrowserRouter>
       </ConnectKitProvider>
     </WagmiConfig>
