@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMarketplace, useActiveListings } from '@thirdweb-dev/react';
-import Card from '../components/Card';
+import Card2 from '../components/Card2';
 
 const Store = () => {
     
@@ -12,7 +12,8 @@ const Store = () => {
         {isLoading? <h1>Loading...</h1> : listings?.map((nfts, id) => {
             return (
                 <div key={id}>
-                    <Card name={nfts.asset.name} description={nfts.asset.description} image={nfts.asset.image} external_url={nfts.asset.external_url} />
+                    {console.log(listings)} 
+                    <Card2 name={nfts.asset.name} description={nfts.asset.description} image={nfts.asset.image} external_url={nfts.asset.external_url} price={nfts.buyoutCurrencyValuePerToken.displayValue} />
                 </div>
             )
         })}

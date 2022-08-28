@@ -21,9 +21,9 @@ const Card = ({image, ...props}) => {
                         {props.description}
                     </p>
                     <DropdownMenu /> 
+                </div>
             </div>
         </div>
-    </div>
     )
 }
 
