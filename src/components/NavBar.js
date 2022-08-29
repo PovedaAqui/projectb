@@ -8,7 +8,7 @@ import { ConnectWallet } from './ConnectWallet';
 
 const navigation = [
   { name: 'My Books', href: '/', current: true },
-  { name: 'Store', href: '#', current: false },
+  { name: 'Store', href: '/store', current: false },
   { name: 'Discord', href: '#', current: false },
   { name: 'About', href: '#', current: false },
 ]
