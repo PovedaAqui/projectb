@@ -1,16 +1,25 @@
 import React from 'react';
+import Checkout from './Checkout';
+import { useState } from 'react';
 
 const Card2 = ({image, ...props}) => {
+
+    const [isOpen, setIsOpen] = useState(false);
 
     let url = "";
     url = image.replace("ipfs//", "https://ipfs.io/ipfs/");
 
+    const OpenModal = () => {
+        setIsOpen(!isOpen)
+    }
+
     return (
         <div className="flex justify-start relative m-2">
             <div className="rounded-lg shadow-lg bg-white max-w-sm">
-                <a href="#" rel="external">
+                <a href="javascript:void(0)" onClick={()=> OpenModal()}>
                     <img className="rounded-t-lg" src={url} alt=""/>
                 </a>
+                <Checkout isOpen={isOpen} setIsOpen={setIsOpen} />
                 <div className="relative p-6">
                     <h5 className="text-gray-900 text-xl font-medium mb-2">{props.name}</h5>
                     <p className="text-gray-700 text-base mb-4">
