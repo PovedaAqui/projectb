@@ -8,7 +8,7 @@ import {
   WagmiConfig,
   createClient,
   configureChains,
-  defaultChains,
+  useSigner,
   chain
 } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
@@ -19,9 +19,11 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { Buffer } from "buffer";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import { ChainId, ThirdwebSDKProvider } from "@thirdweb-dev/react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 if (!window.Buffer) window.Buffer = Buffer;
+const queryClient = new QueryClient();
 
 const { chains, provider, webSocketProvider } = configureChains(
   [chain.polygon],
@@ -57,14 +59,31 @@ const client = createClient({
   webSocketProvider,
 })
 
+function ThirdwebProvider({ wagmiClient, children }) {
+  const { data: signer } = useSigner();
+
+  return (
+    <ThirdwebSDKProvider
+      desiredChainId={ChainId.Polygon}
+      signer={signer}
+      provider={wagmiClient.provider}
+      queryClient={wagmiClient.queryClient}
+    >
+      {children}
+    </ThirdwebSDKProvider>
+  );
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <WagmiConfig client={client}>
       <ConnectKitProvider>
         <BrowserRouter>
-          <ThirdwebProvider desiredChainId={ChainId.Polygon}>
-            <App />
+          <ThirdwebProvider wagmiClient={client}>
+            <QueryClientProvider client={queryClient} contextSharing={true}>
+              <App />
+            </QueryClientProvider>
           </ThirdwebProvider>
         </BrowserRouter>
       </ConnectKitProvider>

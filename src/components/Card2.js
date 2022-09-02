@@ -19,7 +19,7 @@ const Card2 = ({image, ...props}) => {
                 <a href="javascript:void(0)" onClick={()=> OpenModal()}>
                     <img className="rounded-t-lg" src={url} alt=""/>
                 </a>
-                <Checkout isOpen={isOpen} setIsOpen={setIsOpen} />
+                <Checkout isOpen={isOpen} setIsOpen={setIsOpen} listingId={props.listingId} />
                 <div className="relative p-6">
                     <h5 className="text-gray-900 text-xl font-medium mb-2">{props.name}</h5>
                     <p className="text-gray-700 text-base mb-4">

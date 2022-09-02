@@ -5,7 +5,7 @@ import { useMarketplace, useBuyNow } from '@thirdweb-dev/react';
 import { useAccount } from 'wagmi';
 import { ListingType } from '@thirdweb-dev/sdk';
 
-export default function Checkout({isOpen, setIsOpen}) {
+export default function Checkout({isOpen, setIsOpen, listingId}) {
 
   const cancelButtonRef = useRef(null);
   const [pending, setPending] = useState(false);
@@ -19,8 +19,11 @@ export default function Checkout({isOpen, setIsOpen}) {
     error,
   } = useBuyNow(marketplace);
 
-  const buyingBook = () => {
-    console.log(buyNow({ listingId: 1, type: ListingType.Direct, buyAmount: 1, buyForWallet: address }));
+  const buyingBook = async () => {
+    // console.log(buyNow({ listingId: listingId, type: ListingType.Direct, buyAmount: 1, buyForWallet: address }));
+    const tx = await marketplace.buyoutListing(listingId, 1, address);
+    const receipt = tx.receipt;
+    console.log(receipt);
     isLoading? setPending(true) : setPending(false);
   }
 

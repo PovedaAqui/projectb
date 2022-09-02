@@ -12,7 +12,7 @@ const Store = () => {
         {isLoading? <h1>Loading...</h1> : listings?.map((nfts, id) => {
             return (
                 <div key={id}>
-                    <Card2 name={nfts.asset.name} description={nfts.asset.description} image={nfts.asset.image} price={nfts.buyoutCurrencyValuePerToken.displayValue} />
+                    <Card2 name={nfts.asset.name} description={nfts.asset.description} image={nfts.asset.image} price={nfts.buyoutCurrencyValuePerToken.displayValue} listingId={nfts.id} />
                 </div>
             )
         })}
