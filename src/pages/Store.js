@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { useMarketplace, useActiveListings } from '@thirdweb-dev/react';
 import Card2 from '../components/Card2';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const Store = () => {
     
@@ -20,4 +23,13 @@ const Store = () => {
   )
 }
 
-export default Store;
+const hof = (WrappedComponent) => {
+    // Its job is to return a react component warpping the baby component
+    return (props) => (
+        <QueryClientProvider client={queryClient}>
+            <WrappedComponent {...props} />
+        </QueryClientProvider>
+    );
+};
+
+export default hof(Store);

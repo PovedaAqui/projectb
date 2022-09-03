@@ -3,28 +3,25 @@ import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useMarketplace, useBuyNow } from '@thirdweb-dev/react';
 import { useAccount } from 'wagmi';
-import { ListingType } from '@thirdweb-dev/sdk';
 
 export default function Checkout({isOpen, setIsOpen, listingId}) {
 
   const cancelButtonRef = useRef(null);
   const [pending, setPending] = useState(false);
+  const [status, setStatus] = useState(null);
+  const [hash, setHash] = useState(null);
 
   const marketplace = useMarketplace(process.env.REACT_APP_MARKETPLACE_CONTRACT);
   const { address } = useAccount();
 
-  const {
-    mutate: buyNow,
-    isLoading,
-    error,
-  } = useBuyNow(marketplace);
-
   const buyingBook = async () => {
-    // console.log(buyNow({ listingId: listingId, type: ListingType.Direct, buyAmount: 1, buyForWallet: address }));
     const tx = await marketplace.buyoutListing(listingId, 1, address);
+    setPending(true);
     const receipt = tx.receipt;
-    console.log(receipt);
-    isLoading? setPending(true) : setPending(false);
+    const hash = receipt.transactionHash;
+    const status = receipt.status;
+    hash!==undefined && hash!==null && setHash(hash);
+    status!==undefined && status!==null && setStatus(status);
   }
 
   return (
@@ -57,7 +54,8 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0H24V24H0z"/><path d="M12 19c.828 0 1.5.672 1.5 1.5S12.828 22 12 22s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm0-17c3.314 0 6 2.686 6 6 0 2.165-.753 3.29-2.674 4.923C13.399 14.56 13 15.297 13 17h-2c0-2.474.787-3.695 3.031-5.601C15.548 10.11 16 9.434 16 8c0-2.21-1.79-4-4-4S8 5.79 8 8v1H6V8c0-3.314 2.686-6 6-6z"/></svg>
+                        {pending? <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"/></svg>
+                        : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0H24V24H0z"/><path d="M12 19c.828 0 1.5.672 1.5 1.5S12.828 22 12 22s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm0-17c3.314 0 6 2.686 6 6 0 2.165-.753 3.29-2.674 4.923C13.399 14.56 13 15.297 13 17h-2c0-2.474.787-3.695 3.031-5.601C15.548 10.11 16 9.434 16 8c0-2.21-1.79-4-4-4S8 5.79 8 8v1H6V8c0-3.314 2.686-6 6-6z"/></svg>}
                       {/* <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" /> */}
                     </div>
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -66,7 +64,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Do you want to buy this book?
+                          {status? `Check your transaction status in https://polygonscan.com/tx/${hash}` : "Do you want to buy this book?"}
                         </p>
                       </div>
                     </div>
@@ -87,7 +85,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                     onClick={() => setIsOpen(false)}
                     ref={cancelButtonRef}
                   >
-                    Cancel
+                    Close
                   </button>
                 </div>
               </Dialog.Panel>
