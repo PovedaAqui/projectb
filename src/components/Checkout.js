@@ -15,8 +15,8 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
   const { address } = useAccount();
 
   const buyingBook = async () => {
-    const tx = await marketplace.buyoutListing(listingId, 1, address);
     setPending(true);
+    const tx = await marketplace.buyoutListing(listingId, 1, address);
     const receipt = tx.receipt;
     const hash = receipt.transactionHash;
     const status = receipt.status;
@@ -64,7 +64,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          {status? `Check your transaction status in https://polygonscan.com/tx/${hash}` : "Do you want to buy this book?"}
+                          {status? <a href={`https://polygonscan.com/tx/${hash}`}>Check your transaction status</a> : "Do you want to buy this item?"}
                         </p>
                       </div>
                     </div>
