@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { useMarketplace, useBuyNow } from '@thirdweb-dev/react';
+import { useMarketplace } from '@thirdweb-dev/react';
 import { useAccount } from 'wagmi';
 
 export default function Checkout({isOpen, setIsOpen, listingId}) {
