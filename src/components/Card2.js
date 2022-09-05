@@ -7,7 +7,7 @@ const Card2 = ({image, ...props}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     let url = "";
-    url = image.replace("ipfs//", "https://ipfs.io/ipfs/");
+    url = image.replace("ipfs//", "https://nftstorage.link/ipfs/");
 
     const maticToUsd = props.tokenPrice === undefined? props.tokenPrice : props.price * props.tokenPrice;
 
