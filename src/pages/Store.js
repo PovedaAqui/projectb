@@ -12,8 +12,8 @@ const Store = () => {
     const marketplace = useMarketplace(process.env.REACT_APP_MARKETPLACE_CONTRACT);
     const { data: listings, isLoading, error } = useActiveListings(marketplace, { start: 0, count: 100 });
 
-    const { data, isError } = useDataFeed();
-    const tokenPrice = (parseInt(data?.answer)*10**-8).toFixed(2);
+    const { data, isError, isFetching } = useDataFeed();
+    const tokenPrice = isFetching? "..." : (parseInt(data?.answer)*10**-8).toFixed(2);
 
   return (
     <div className='grid grid-cols-1 gap-3 mt-1 lg:grid-cols-3'>
