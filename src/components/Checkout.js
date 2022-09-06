@@ -64,7 +64,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          {status? <a href={`https://polygonscan.com/tx/${hash}`}>Check your transaction status</a> : "Do you want to buy this item?"}
+                          {status? <a href={`https://polygonscan.com/tx/${hash}`} target='_blank'>Check your transaction status here</a> : "Do you want to buy this item?"}
                         </p>
                       </div>
                     </div>
