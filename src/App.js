@@ -3,7 +3,7 @@ import MyBooks from './pages/MyBooks';
 import NavBar from './components/NavBar';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Store from './pages/Store';
-import DataFeed from './utils/DataFeed';
+import Faqs from './pages/Faqs';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<MyBooks />} />
         <Route path='/store' element={<Store />} />
-        <Route path='/price' element={<DataFeed />} />
+        <Route path='/faqs' element={<Faqs/>} />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />
     </div>
