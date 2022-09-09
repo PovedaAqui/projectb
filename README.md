@@ -31,13 +31,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/povedaaqui/projectb">
-    <img src="_blank" alt="Logo" width="80" height="80"> projectb
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">projectb</h3>
 
   <p align="center">
-    projectb is a Collectible Books (cBooks) Marketplace (formerly NFTBooks)
+    projectb is a Collectible Books (cBooks) Marketplace (also know as NFTBooks)
     <br />
     <a href="https://github.com/povedaaqui/projectb"><strong>Explore the docs »</strong></a>
     <br />
@@ -215,7 +215,7 @@ Project Link: [https://github.com/povedaaqui/projectb](https://github.com/poveda
 
 * [NFTport](https://nftport.xyz)
 * [Thirdweb](https://thirdweb.com)
-* [wagmi](https://wagmi.sh)
+* [wagmi.sh](https://wagmi.sh)
 * [Alchemy](https://alchemy.com)
 * [Chainlink](https://chain.link)
 
