@@ -1,4 +1,5 @@
 import React from 'react';
+//Source: https://flowbite.com/blocks/marketing/faq/
 
 const Faqs = () => {
   return (

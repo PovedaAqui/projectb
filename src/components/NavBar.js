@@ -1,5 +1,5 @@
 //Source: https://tailwindui.com/components/application-ui/navigation/navbars
-//This example requires Tailwind CSS v2.0+
+//Requires Tailwind CSS v2.0+
 
 import React from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
