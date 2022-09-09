@@ -5,12 +5,12 @@ import React from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ConnectWallet } from './ConnectWallet';
+import { NavLink } from 'react-router-dom';
 
 const navigation = [
   { name: 'My Books', href: '/', current: true },
   { name: 'Store', href: '/store', current: false },
-  { name: 'Discord', href: '#', current: false },
-  { name: 'About', href: '#', current: false },
+  { name: 'FAQS', href: '/faqs', current: false },
 ]
 
 function classNames(...classes) {
@@ -51,17 +51,17 @@ export default function NavBar() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        to={item.href}
+                        className={({isActive}) => classNames(
+                          isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
