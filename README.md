@@ -31,14 +31,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/povedaaqui/projectb">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="_blank" alt="Logo" width="80" height="80"> projectb
   </a>
 
 <h3 align="center">projectb</h3>
 
   <p align="center">
-    projectb is a Collectible Books (cBooks) Marketplace (formerly NFTBooks). 
-    It wants to be a new alternative to buy, sell, and read digital books. Thanks to the blockchain technology, sellers and publishers are been able to get up to 90% royalties, and for the firs time ever in this market, resale royalties as well. The users will be able to read their favorite collectibles using the incoming in-app reader and any third party reader. Also, they will be able to resell their cBooks in secondary marketplaces. The applications are just limited by our imagination.
+    projectb is a Collectible Books (cBooks) Marketplace (formerly NFTBooks)
     <br />
     <a href="https://github.com/povedaaqui/projectb"><strong>Explore the docs »</strong></a>
     <br />
@@ -86,7 +85,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+It wants to be a new alternative to buy, sell, and read digital books. Thanks to the blockchain technology, sellers and publishers are been able to get up to 90% royalties, and for the firs time ever in this market, resale royalties as well. The users will be able to read their favorite collectibles using the incoming in-app reader and any third party reader. Also, they will be able to resell their cBooks in secondary marketplaces. The applications are just limited by our imagination.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,6 +97,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![TailwindCSS][TailwindCSS]][TailwindCSS]
 * [![wagmi.sh][wagmi.sh]][wagmi.sh]
 * [![Thirdweb.com][Thirdweb.com]][Thirdweb.com]
+* [![nftport.xyz][nftport.xyz]][nftport.xyz]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,15 +111,11 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Follow this guide to make it works locally.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [nftport.xzy](https://nftport.xyz) and [alchemy.com](https://alchemy.com)
 2. Clone the repo
    ```sh
    git clone https://github.com/povedaaqui/projectb.git
@@ -128,9 +124,22 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Create an .env file and Enter your APIs in `env`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const REACT_APP_ALCHEMY_KEY = 'ENTER YOUR API';
+   const REACT_APP_NFT_PORT = 'ENTER YOUR API';
+   ```
+5. Choose the chain and add it to `env`
+   ```js
+   const REACT_APP_CHAIN = 'polygon';
+   ```
+6. Create marketplace contract on Thirdweb, then, add it to `env`
+   ```js
+   const REACT_APP_MARKETPLACE_CONTRACT = 'ENTER YOUR CONTRACT ADDRESS';
+   ```
+7. Create NFT products contract on NFTport, then, add it to `env`
+   ```js
+   const REACT_APP_NFT_PORT = 'ENTER YOUR CONTRACT ADDRESS';
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -140,9 +149,11 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+First of all, mint an NFT in the NFT Products Contract you created before on NFTPort.xyz, just the NFT minted in this contract will be shown in MyBooks page. Find a metadata example in the metadata folder included in this repo.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+List the NFTs using the Marketplace contract you created on Thirdweb.com.
+
+_For more examples, please refer to the [Documentation](https://github.com/PovedaAqui/projectb)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,10 +162,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Improve UI/UX
+- [ ] Test with Collection Contract
+- [ ] Fix bugs
 
 See the [open issues](https://github.com/povedaaqui/projectb/issues) for a full list of proposed features (and known issues).
 
@@ -192,7 +202,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@bookversexyz](https://twitter.com/bookversexyz) - luis.poveda9321@gmail.com
+Luis - [@bookversexyz](https://twitter.com/bookversexyz) - luis.poveda9321@gmail.com
 
 Project Link: [https://github.com/povedaaqui/projectb](https://github.com/povedaaqui/projectb)
 
@@ -203,9 +213,11 @@ Project Link: [https://github.com/povedaaqui/projectb](https://github.com/poveda
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [NFTport](https://nftport.xyz)
+* [Thirdweb](https://thirdweb.com)
+* [wagmi](https://wagmi.sh)
+* [Alchemy](https://alchemy.com)
+* [Chainlink](https://chain.link)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -246,3 +258,4 @@ Project Link: [https://github.com/povedaaqui/projectb](https://github.com/poveda
 [wagmi.sh]: https://img.shields.io/badge/wagmi.sh-wagmi.sh-black
 [nftport.xyz]: https://img.shields.io/badge/nftport.xyz-nftport.xyz-black
 [Thirdweb.com]: https://img.shields.io/badge/thirdweb.com-thirdweb.com-purple
+[Chainlink]: https://img.shields.io/badge/chainlink-chain.link-blue
