@@ -98,6 +98,7 @@ It wants to be a new alternative to buy, sell, and read digital books. Thanks to
 * [![wagmi.sh][wagmi.sh]][wagmi.sh]
 * [![Thirdweb.com][Thirdweb.com]][Thirdweb.com]
 * [![nftport.xyz][nftport.xyz]][nftport.xyz]
+* [![NFT.storage][NFT.storage]][NFT.storage]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -260,3 +261,4 @@ Project Link: [https://github.com/povedaaqui/projectb](https://github.com/poveda
 [nftport.xyz]: https://img.shields.io/badge/nftport.xyz-nftport.xyz-black
 [Thirdweb.com]: https://img.shields.io/badge/thirdweb.com-thirdweb.com-purple
 [Chainlink]: https://img.shields.io/badge/chainlink-chain.link-blue
+[NFT.storage]: https://img.shields.io/badge/NFT.storage-NFT.storage-yellow
