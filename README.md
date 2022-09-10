@@ -152,7 +152,7 @@ Follow this guide to make it works locally.
 
 First of all, mint an NFT in the NFT Products Contract you created before on NFTPort.xyz, just the NFT minted in this contract will be shown in MyBooks page. Find a metadata example in the metadata folder included in this repo.
 
-List the NFTs using the Marketplace contract you created on Thirdweb.com.
+List the NFTs using the Marketplace contract you created on Thirdweb.com, after that, they should appear on the Store page.
 
 _For more examples, please refer to the [Documentation](https://github.com/PovedaAqui/projectb)_
 
@@ -164,7 +164,7 @@ _For more examples, please refer to the [Documentation](https://github.com/Poved
 ## Roadmap
 
 - [ ] Improve UI/UX
-- [ ] Test with Collection Contract
+- [ ] Test with Collection Contract instead of Products Contract
 - [ ] Create a backend
 - [ ] Fix bugs
 
@@ -204,7 +204,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Luis - [@bookversexyz](https://twitter.com/bookversexyz) - luis.poveda9321@gmail.com
+Luis - [@povedaaqui](https://twitter.com/povedaaqui) - luis.poveda9321@gmail.com
 
 Project Link: [https://github.com/povedaaqui/projectb](https://github.com/povedaaqui/projectb)
 

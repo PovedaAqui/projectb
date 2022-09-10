@@ -25,7 +25,7 @@ const MyBooks = () => {
 
     return (
         <div className='grid grid-cols-1 gap-3 mt-1 lg:grid-cols-3'>
-            {isLoading? <h1>Loading...</h1> : data?.nfts.map((nft, id)=>{
+            {isLoading? <h1>Loading your books...</h1> : data?.nfts.map((nft, id)=>{
                 return (
                     <div key={id}>
                         <Card name={nft.metadata.name} description={nft.metadata.description} image={nft.metadata.image} external_url={nft.metadata.external_url} />
