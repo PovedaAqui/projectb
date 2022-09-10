@@ -166,6 +166,7 @@ _For more examples, please refer to the [Documentation](https://github.com/Poved
 - [ ] Improve UI/UX
 - [ ] Test with Collection Contract instead of Products Contract
 - [ ] Create a backend
+- [ ] Implement someday pending changes
 - [ ] Fix bugs
 
 See the [open issues](https://github.com/povedaaqui/projectb/issues) for a full list of proposed features (and known issues).
