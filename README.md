@@ -42,7 +42,7 @@
     <a href="https://github.com/povedaaqui/projectb"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/povedaaqui/projectb">View Demo</a>
+    <a href="https://projectbooks.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/povedaaqui/projectb/issues">Report Bug</a>
     ·
@@ -86,6 +86,8 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 It wants to be a new alternative to buy, sell, and read digital books. Thanks to the blockchain technology, sellers and publishers are been able to get up to 90% royalties, and for the firs time ever in this market, resale royalties as well. The users will be able to read their favorite collectibles using the incoming in-app reader and any third party reader. Also, they will be able to resell their cBooks in secondary marketplaces. The applications are just limited by our imagination.
+
+Demo: <a href="https://projectbooks.vercel.app/">view demo</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
