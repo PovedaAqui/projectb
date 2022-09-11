@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 const navigation = [
   { name: 'My Books', href: '/', current: true },
   { name: 'Store', href: '/store', current: false },
-  { name: 'FAQS', href: '/faqs', current: false },
+  { name: 'FAQs', href: '/faqs', current: false },
 ]
 
 function classNames(...classes) {
