@@ -5,7 +5,7 @@ import Card from '../components/Card';
 
 const MyBooks = () => {
 
-    const { address } = useAccount();
+    const { address, isConnected } = useAccount();
     const chain = process.env.REACT_APP_CHAIN;
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
@@ -21,17 +21,18 @@ const MyBooks = () => {
         return res.json();
     };
     
-    const { isLoading, isError, data, isSuccess } = useQuery(['nfts'], fetchNFT, { enabled: address!==undefined });
+    const { isLoading, data } = useQuery(['nfts'], fetchNFT, { enabled: isConnected });
 
     return (
         <div className='grid grid-cols-1 gap-3 mt-1 lg:grid-cols-3'>
-            {isLoading? <h1>Loading your books...</h1> : data?.nfts.map((nft, id)=>{
+            {isConnected && isLoading? <h1>Loading your books...</h1> : data?.nfts.map((nft, id)=>{
                 return (
                     <div key={id}>
                         <Card name={nft.metadata.name} description={nft.metadata.description} image={nft.metadata.image} external_url={nft.metadata.external_url} />
                     </div>
                 )
             })}
+            {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-3xl font-extrabold text-gray-900 md:text-4xl md:ml-2 md:absolute md:mt-2 lg:text-5xl'>Connect your wallet</div>}
         </div>
     )
 };
