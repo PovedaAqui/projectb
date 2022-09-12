@@ -32,7 +32,7 @@ const MyBooks = () => {
                     </div>
                 )
             })}
-            {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-3xl font-extrabold text-gray-900 md:text-4xl md:ml-2 md:absolute md:mt-2 lg:text-5xl'>Connect your wallet</div>}
+            {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-xl font-extrabold text-gray-900 md:text-3xl md:ml-2 md:absolute md:mt-2 lg:text-4xl'>Connect your wallet</div>}
         </div>
     )
 };
