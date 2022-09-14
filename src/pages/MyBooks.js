@@ -2,7 +2,6 @@ import React from 'react';
 import { useAccount } from 'wagmi';
 import { useQuery } from '@tanstack/react-query';
 import Card from '../components/Card';
-import { Link } from 'react-router-dom';
 
 const MyBooks = () => {
 
@@ -33,7 +32,7 @@ const MyBooks = () => {
                     </div>
                 )
             })}
-            {!isConnected && <div className='m-auto justify-center item-center leading-none text-lg font-extrabold text-gray-900 md:text-3xl md:ml-2 md:absolute md:mt-2 lg:text-4xl'>Some of the most impressive artworks are waiting for you in the <Link to='/store' className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600'>Store</Link></div>}
+            {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-lg font-extrabold text-gray-900 md:text-3xl md:ml-2 md:absolute md:mt-2 lg:text-4xl'>It's very quiet round here...</div>}
         </div>
     )
 };

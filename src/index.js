@@ -68,6 +68,13 @@ function ThirdwebProvider({ wagmiClient, children }) {
       signer={signer}
       provider={wagmiClient.provider}
       queryClient={wagmiClient.queryClient}
+      sdkOptions={{
+        gasless: {
+          openzeppelin: {
+            relayerUrl: process.env.REACT_APP_WEBHOOK_URL,
+          },
+        },
+      }}
     >
       {children}
     </ThirdwebSDKProvider>
