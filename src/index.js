@@ -71,7 +71,7 @@ function ThirdwebProvider({ wagmiClient, children }) {
       sdkOptions={{
         gasless: {
           openzeppelin: {
-            relayerUrl: `${process.env.REACT_APP_WEBHOOK_URL}`,
+            relayerUrl: process.env.REACT_APP_WEBHOOK_URL,
           },
         },
       }}
