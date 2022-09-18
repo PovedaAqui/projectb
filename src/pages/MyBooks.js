@@ -28,7 +28,7 @@ const MyBooks = () => {
             {isConnected && isLoading? <h1>Loading your books...</h1> : data?.nfts.map((nft, id)=>{
                 return (
                     <div key={id}>
-                        <Card name={nft.metadata.name} description={nft.metadata.description} image={nft.metadata.image} external_url={nft.metadata.external_url} />
+                        <Card name={nft?.metadata?.name} description={nft?.metadata?.description} image={nft?.metadata?.image} external_url={nft?.metadata?.external_url} />
                     </div>
                 )
             })}

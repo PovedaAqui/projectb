@@ -4,10 +4,10 @@ import DropdownMenu from './DropdownMenu';
 const Card = ({image, ...props}) => {
 
     let url = "";
-    url = image.replace("ipfs//", "https://ipfs.io/ipfs/");
+    url = image?.replace("ipfs//", "https://ipfs.io/ipfs/");
 
     let external_url = "";
-    external_url = props.external_url.replace("ipfs//", "https://ipfs.io/ipfs/");
+    external_url = props?.external_url?.replace("ipfs//", "https://ipfs.io/ipfs/");
 
     return (
         <div className="flex justify-start relative m-2">
