@@ -2,7 +2,8 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon, DotsVerticalIcon } from '@heroicons/react/solid'
 
-export default function DropdownMenu() {
+export default function DropdownMenu({tokenId}) {
+
   return (
     <div className="absolute right-0 bottom-0 p-2 w-56 text-right">
       <Menu as="div" className="relative inline-block text-left">
@@ -74,8 +75,9 @@ export default function DropdownMenu() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() => window.location.href=`https://opensea.io/assets/matic/${process.env.REACT_APP_NFTCONTRACT}/${tokenId}`}
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-400'
+                      active ? 'bg-violet-500 text-white' : 'text-gray-700'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -89,7 +91,7 @@ export default function DropdownMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    View on OpenSea (soon)
+                    View on OpenSea
                   </button>
                 )}
               </Menu.Item>
