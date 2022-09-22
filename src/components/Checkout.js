@@ -75,7 +75,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                     type="button"
                     disabled={pending}
                     className={!pending? "inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm" 
-                    : "inline-flex w-full justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"}
+                    : "inline-flex w-full justify-center rounded-md cursor-progress border border-transparent bg-gray-400 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"}
                     onClick={() => buyingBook()}
                   >
                     Buy
