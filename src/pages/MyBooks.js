@@ -22,12 +22,13 @@ const MyBooks = () => {
         return res.json();
     };
 
+    //First call
     const { data: balance } = useQuery(['nfts'], fetchBalance);
 
     const balances = balance?.find(element => element?.contractAddress === "0xf66f067a0a9a525e5a8b8e7a732857653e6994f5")?.balances
     const tokenIds = balances?.map(element => element?.tokenId)
    
-    const fetchMetadata = async ({ids}) => {
+    const fetchMetadata = async (ids) => {
         const res = await fetch(`https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
             "method": "GET",
             "headers": {
@@ -39,12 +40,13 @@ const MyBooks = () => {
         return res.json();
     };
     
+    //Second call
     const { data: metadata } = useQueries({
-        queries: tokenIds?.map(ids => {
+        queries: balances?.map(ids => {
             return {
                 queryKey: ['ipfs', ids],
                 queryFn: () => fetchMetadata(ids),
-                enabled: tokenIds!==undefined && tokenIds!==null,
+                enabled: !!balances,
             }
         }),
     })
