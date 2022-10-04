@@ -46,7 +46,7 @@ const MyBooks = () => {
             return {
                 queryKey: ['ipfs', ids],
                 queryFn: () => fetchMetadata(ids),
-                enabled: !!balances,
+                enabled: !!tokenIds,
             }
         }),
     })
