@@ -11,7 +11,7 @@ const MyBooks = () => {
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
     const fetchBalance = async () => {
-        const res = await fetch(`https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
+        const res = await fetch(`https://justcors.com/tl_dcca24d/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const MyBooks = () => {
     const tokenIds = balances && balances?.balances?.map(element => element?.tokenId);
    
     const fetchMetadata = async (ids) => {
-        const res = await fetch(`https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
+        const res = await fetch(`https://justcors.com/tl_dcca24d/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -50,8 +50,6 @@ const MyBooks = () => {
             }
         }),
     })
-
-    // console.log(metadata)
 
     // return (
     //     <div className='grid grid-cols-1 gap-y-3 gap-x-0 mt-1 lg:grid-cols-4'>
