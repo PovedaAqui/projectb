@@ -2,7 +2,6 @@ import React from 'react';
 import { useAccount } from 'wagmi';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import Card from '../components/Card';
-import { type } from '@testing-library/user-event/dist/type';
 
 const MyBooks = () => {
 
@@ -11,11 +10,11 @@ const MyBooks = () => {
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
     const fetchBalance = async () => {
-        const res = await fetch(`https://justcors.com/tl_dcca24d/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
+        const res = await fetch(`https://justcors.com/tl_3e02090/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
-                "Authorization": process.env.REACT_APP_TATUM
+                "x-api-key": process.env.REACT_APP_TATUM
                 }
             }
         )
@@ -29,11 +28,11 @@ const MyBooks = () => {
     const tokenIds = balances && balances?.balances?.map(element => element?.tokenId);
    
     const fetchMetadata = async (ids) => {
-        const res = await fetch(`https://justcors.com/tl_dcca24d/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
+        const res = await fetch(`https://justcors.com/tl_3e02090/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
-                "Authorization": process.env.REACT_APP_TATUM
+                "x-api-key": process.env.REACT_APP_TATUM
                 }
             }
         )
@@ -50,6 +49,30 @@ const MyBooks = () => {
             }
         }),
     })
+
+    const url = metadata && metadata?.replace("ipfs//", "https://nftstorage.link/ipfs/");
+
+    // const fetchIPFS = async (urls) => {
+    //     const res = await fetch(urls, {
+    //         "method": "GET",
+    //         "headers": {
+    //             "Content-Type": "application/json"
+    //             }
+    //         }
+    //     )
+    //     return res.json();
+    // };
+
+    // //Third call
+    // const { data: urls } = useQueries({
+    //     queries: (url || []).map(urls => {
+    //         return {
+    //             queryKey: ['urls', urls],
+    //             queryFn: () => fetchIPFS(urls),
+    //             enabled: !!url,
+    //         }
+    //     }),
+    // })
 
     // return (
     //     <div className='grid grid-cols-1 gap-y-3 gap-x-0 mt-1 lg:grid-cols-4'>
