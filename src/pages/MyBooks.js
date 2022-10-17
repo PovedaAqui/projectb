@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Card from '../components/Card';
-import { data } from 'autoprefixer';
 
 const MyBooks = () => {
 
@@ -31,6 +30,7 @@ const MyBooks = () => {
     //First call
     const { data: balance } = useQuery(['nfts'], fetchBalance);
 
+    //Second call
     useEffect(() => {
         const fetchMetadata = async (ids) => {
             let params = [];
@@ -50,6 +50,7 @@ const MyBooks = () => {
         totalBalance!==null && totalBalance.map(ids => fetchMetadata(ids));
     }, [!!totalBalance]);
     
+    //Third call
     useEffect(() => {
         const fetchIPFS = async (ids) => {
             let params = [];
