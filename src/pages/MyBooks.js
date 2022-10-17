@@ -14,7 +14,7 @@ const MyBooks = () => {
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
     const fetchBalance = async () => {
-        const res = await fetch(`https://justcors.com/tl_21b1f06/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
+        const res = await fetch(`https://cors-anywhere.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const MyBooks = () => {
         const fetchMetadata = async (ids) => {
             let params = [];
             let res = [];
-            res = await fetch(`https://justcors.com/tl_21b1f06/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
+            res = await fetch(`https://cors-anywhere.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -52,6 +52,7 @@ const MyBooks = () => {
     
     useEffect(() => {
         const fetchIPFS = async (ids) => {
+            let params = [];
             let url = "";
             if (ids.data.includes("ipfs://")) {
                 url = ids.data.replace("ipfs://", "https://nftstorage.link/ipfs/");
@@ -62,7 +63,7 @@ const MyBooks = () => {
                 url = ids;
             }
             let res = [];
-            res = await fetch(`https://justcors.com/tl_21b1f06/${url}`, {
+            res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -70,66 +71,24 @@ const MyBooks = () => {
             }
         )
         .then(res => res.json())
-        .then(data => console.log(data))
-        // .then(data2 => setIpfs(data2))
+        .then(data => params.push(data))
+        .then(data2 => data2 === params.length && setIpfs(params))
     };
         tokens!==null && tokens.map(data => fetchIPFS(data));
     }, [!!tokens]);
 
-
-
-
-
-    
-    //Second call
-    // const { data: metadata } = useQueries({
-    //     queries: (tokenIds || []).map(ids => {
-    //         return {
-    //             queryKey: ['ipfs', ids],
-    //             queryFn: () => fetchMetadata(ids),
-    //             enabled: !!tokenIds,
-    //         }
-    //     }),
-    // })
-
-    // const { data: metadata } = useQuery(['metadata', balance], fetchMetadata(balance), {enabled: balance!==null});
-
-    // const url = metadata && (metadata || []).replace("ipfs//", "https://nftstorage.link/ipfs/");
-
-    // const fetchIPFS = async (urls) => {
-    //     const res = await fetch(urls, {
-    //         "method": "GET",
-    //         "headers": {
-    //             "Content-Type": "application/json"
-    //             }
-    //         }
-    //     )
-    //     return res.json();
-    // };
-
-    // //Third call
-    // const { data: urls } = useQueries({
-    //     queries: (url || []).map(urls => {
-    //         return {
-    //             queryKey: ['urls', urls],
-    //             queryFn: () => fetchIPFS(urls),
-    //             enabled: !!url,
-    //         }
-    //     }),
-    // })
-
-    // return (
-    //     <div className='grid grid-cols-1 gap-y-3 gap-x-0 mt-1 lg:grid-cols-4'>
-    //         {isConnected && isLoading? <h1>Loading your books...</h1> : data?.nfts.map((nft, id)=>{
-    //             return (
-    //                 <div key={id}>
-    //                     <Card name={nft?.metadata?.name} description={nft?.metadata?.description} image={nft?.metadata?.image} external_url={nft?.metadata?.external_url} tokenId={nft?.token_id} />
-    //                 </div>
-    //             )
-    //         })}
-    //         {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-lg font-extrabold text-gray-900 md:text-3xl md:ml-2 md:absolute md:mt-2 lg:text-4xl'>It's very quiet round here...</div>}
-    //     </div>
-    // )
+    return (
+        <div className='grid grid-cols-1 gap-y-3 gap-x-0 mt-1 lg:grid-cols-4'>
+            {isConnected && !ipfs? <h1>Loading your books...</h1> : ipfs.map((nft, id)=>{
+                return (
+                    <div key={id}>
+                        <Card name={nft?.name} description={nft?.description} image={nft?.image} external_url={nft?.external_url} tokenId={nft?.token_id} />
+                    </div>
+                )
+            })}
+            {!isConnected && <div className='flex m-auto justify-center item-center leading-none text-lg font-extrabold text-gray-900 md:text-3xl md:ml-2 md:absolute md:mt-2 lg:text-4xl'>It's very quiet round here...</div>}
+        </div>
+    )
 };
 
 export default MyBooks;
