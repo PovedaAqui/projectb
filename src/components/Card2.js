@@ -9,7 +9,7 @@ const Card2 = ({image, ...props}) => {
     let url = "";
     url = image?.replace("ipfs//", "https://nftstorage.link/ipfs/");
 
-    const maticToUsd = props?.tokenPrice === undefined || null? props?.tokenPrice : props?.price * props?.tokenPrice;
+    const maticToUsd = props?.tokenPrice === undefined || null? "N/A" : props?.price * props?.tokenPrice;
 
     const OpenModal = () => {
         setIsOpen(!isOpen)
