@@ -13,7 +13,7 @@ const MyBooks = () => {
     const nftContract = process.env.REACT_APP_NFTCONTRACT;
 
     const fetchBalance = async () => {
-        const res = await fetch(`https://cors-anywhere.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
+        const res = await fetch(`https://bookverse-proxy.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/address/balance/${chain}/${address}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const MyBooks = () => {
         const fetchMetadata = async (ids) => {
             let params = [];
             let res = [];
-            res = await fetch(`https://cors-anywhere.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
+            res = await fetch(`https://bookverse-proxy.herokuapp.com/https://api-eu1.tatum.io/v3/multitoken/metadata/${chain}/${nftContract}/${ids}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
@@ -43,9 +43,15 @@ const MyBooks = () => {
                 }
             }
         )
-        .then(res => res.json())
+        .then(res => {
+            if(!res.ok) {
+                throw Error("There was an error, please report it to support")
+            }
+            return res.json();
+        })
         .then(data => params.push(data))
         .then(data2 => data2 === params.length && setTokens(params))
+        .catch(error => console.log(error))
     };
         totalBalance!==null && totalBalance.map(ids => fetchMetadata(ids));
     }, [!!totalBalance]);
@@ -64,16 +70,22 @@ const MyBooks = () => {
                 url = ids;
             }
             let res = [];
-            res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
+            res = await fetch(`https://bookverse-proxy.herokuapp.com/${url}`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
                 }
             }
         )
-        .then(res => res.json())
+        .then(res => {
+            if(!res.ok) {
+                throw Error("There was an error, please report it to support")
+            }
+            return res.json();
+        })
         .then(data => params.push(data))
         .then(data2 => data2 === params.length && setIpfs(params))
+        .catch(error => console.log(error))
     };
         tokens!==null && tokens.map(data => fetchIPFS(data));
     }, [!!tokens]);
