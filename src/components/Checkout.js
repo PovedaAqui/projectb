@@ -1,28 +1,15 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { useMarketplace } from '@thirdweb-dev/react';
-import { useAccount } from 'wagmi';
+import { Web3Button, useContract } from '@thirdweb-dev/react';
 
 export default function Checkout({isOpen, setIsOpen, listingId}) {
 
   const cancelButtonRef = useRef(null);
   const [pending, setPending] = useState(false);
-  const [status, setStatus] = useState(null);
   const [hash, setHash] = useState(null);
 
-  const marketplace = useMarketplace(process.env.REACT_APP_MARKETPLACE_CONTRACT);
-  const { address } = useAccount();
-
-  const buyingBook = async () => {
-    setPending(true);
-    const tx = await marketplace.buyoutListing(listingId, 1, address);
-    const receipt = tx.receipt;
-    const hash = receipt.transactionHash;
-    const status = receipt.status;
-    hash!==undefined && hash!==null && setHash(hash);
-    status!==undefined && status!==null && setStatus(status);
-  }
+  const { contract } = useContract(process.env.REACT_APP_DROP_CONTRACT);
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -64,14 +51,33 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          {status? <a href={`https://polygonscan.com/tx/${hash}`} target='_blank'>Check your transaction status here</a> : "Do you want to buy this item?"}
+                          {pending? <a href={`https://polygonscan.com/tx/${hash}`} target='_blank'>Check your transaction status here</a> : "Do you want to buy this item?"}
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
+                  <Web3Button
+                    contractAddress={contract}
+                    action={async (contract) => {
+                      const tx = await contract.erc1155.claim(listingId, "1")
+                      const receipt = tx.receipt;
+                      const hash = receipt.transactionHash;
+                      hash && setHash(hash);
+                      }}
+                    onSubmit={() => setPending(true)}
+                    onSuccess={(result) => {
+                      alert(`Successfully ${result}`);
+                      setPending(false);
+                      }}
+                    onError={(error) => alert(error?.message)}
+                    accentColor="#f213a4"
+                    colorMode="dark"
+                  >
+                    Buy
+                  </Web3Button>
+                  {/* <button
                     type="button"
                     disabled={pending}
                     className={!pending? "inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm" 
@@ -79,7 +85,7 @@ export default function Checkout({isOpen, setIsOpen, listingId}) {
                     onClick={() => buyingBook()}
                   >
                     Buy
-                  </button>
+                  </button> */}
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
