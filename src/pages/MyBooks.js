@@ -45,7 +45,7 @@ const MyBooks = () => {
         )
         .then(res => {
             if(!res.ok) {
-                throw Error("There was an error, please report it to support")
+                throw Error("There was an error in the second call, please report it to support")
             }
             return res.json();
         })
@@ -79,7 +79,7 @@ const MyBooks = () => {
         )
         .then(res => {
             if(!res.ok) {
-                throw Error("There was an error, please report it to support")
+                throw Error("There was an error in the last call, please report it to support")
             }
             return res.json();
         })

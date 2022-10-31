@@ -16,7 +16,6 @@ const Store = () => {
             {nfts && nfts?.map((nfts, id) => {
                 return (
                     <div key={id}>
-                    {/* price={nfts.buyoutCurrencyValuePerToken.displayValue} listingId={nfts.id} tokenPrice={tokenPrice} */}
                         <Card2 name={nfts.metadata.name} description={nfts.metadata.description} image={nfts.metadata.image} listingId={nfts.metadata.id}/>
                     </div>
                 )
