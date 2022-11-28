@@ -34,10 +34,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">projectb</h3>
+<h3 align="center">projectb (Deprecated)</h3>
 
   <p align="center">
-    projectb is a Collectible Books (cBooks) Marketplace (also know as NFTBooks)
+    projectb is a Digital Collectible Books (cBooks) Marketplace (also know as NFTBooks)
     <br />
     <a href="https://github.com/povedaaqui/projectb"><strong>Explore the docs »</strong></a>
     <br />
